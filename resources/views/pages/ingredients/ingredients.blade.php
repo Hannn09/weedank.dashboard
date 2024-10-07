@@ -13,6 +13,7 @@
             <path fill="white"
                 d="M18 12.998h-5v5a1 1 0 0 1-2 0v-5H6a1 1 0 0 1 0-2h5v-5a1 1 0 0 1 2 0v5h5a1 1 0 0 1 0 2z" />
         </svg>Tambah Bahan Baku</button>
+
     {{-- Showing Modal --}}
     <div class="modal fade modal-borderless modal-lg" id="modal" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -65,13 +66,90 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary-outline" data-bs-dismiss="modal">
                         <i class="bx bx-x d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block text-white">Cancel</span>
+                        <span class="d-none d-sm-block">Cancel</span>
                     </button>
                     <button type="button" class="btn btn-primary ms-1" data-bs-dismiss="modal">
                         <i class="bx bx-check d-block d-sm-none"></i>
                         <span class="d-none d-sm-block">Save</span>
                     </button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Table --}}
+    <div class="col-12s">
+        <div class="card">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-striped table-md">
+                        <tr>
+                            <th>Kode Bahan</th>
+                            <th>Nama Bahan</th>
+                            <th>Satuan</th>
+                            <th>Stok</th>
+                            <th>Harga</th>
+                            <th>Action</th>
+                        </tr>
+                        <tr>
+                            <td>A001</td>
+                            <td>Tepung Terigu</td>
+                            <td>Gram (g)</td>
+                            <td>100</td>
+                            <td>Rp 10.000</td>
+                            <td><a href="#" class="btn btn-secondary">Detail</a></td>
+                        </tr>
+                        <tr>
+                            <td>A002</td>
+                            <td>Tepung Terigu</td>
+                            <td>Gram (g)</td>
+                            <td>100</td>
+                            <td>Rp 10.000</td>
+                            <td><a href="#" class="btn btn-secondary">Detail</a></td>
+                        </tr>
+                        <tr>
+                            <td>A003</td>
+                            <td>Tepung Terigu</td>
+                            <td>Gram (g)</td>
+                            <td>100</td>
+                            <td>Rp 10.000</td>
+                            <td><a href="#" class="btn btn-secondary">Detail</a></td>
+                        </tr>
+                        <tr>
+                            <td>A004</td>
+                            <td>Tepung Terigu</td>
+                            <td>Gram (g)</td>
+                            <td>100</td>
+                            <td>Rp 10.000</td>
+                            <td><a href="#" class="btn btn-secondary">Detail</a></td>
+                        </tr>
+                        <tr>
+                            <td>A005</td>
+                            <td>Tepung Terigu</td>
+                            <td>Gram (g)</td>
+                            <td>100</td>
+                            <td>Rp 10.000</td>
+                            <td><a href="#" class="btn btn-secondary">Detail</a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer text-right d-flex justify-content-end ">
+                <nav class="d-inline-block">
+                    <ul class="pagination mb-0">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1"><i class="bi bi-chevron-left"></i></a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#"><i class="bi bi-chevron-right"></i></a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>

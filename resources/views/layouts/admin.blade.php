@@ -68,8 +68,6 @@
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Dashboard</span>
                             </a>
-
-
                         </li>
 
                         <li class="sidebar-item  has-sub @if (Request::routeIs('ingredients', 'product')) active @endif">
@@ -77,7 +75,6 @@
                                 <i class="bi bi-box-seam-fill"></i>
                                 <span>Barang</span>
                             </a>
-
                             <ul class="submenu ">
                                 <li class="submenu-item  @if (Request::routeIs('product')) active @endif">
                                     <a href="{{ route('product') }}" class="submenu-link">Produk</a>
@@ -85,11 +82,8 @@
                                 <li class="submenu-item @if (Request::routeIs('ingredients')) active @endif">
                                     <a href="{{ route('ingredients') }}" class="submenu-link">Bahan Baku</a>
                                 </li>
-
                             </ul>
                         </li>
-
-
                     </ul>
                 </div>
             </div>
@@ -112,7 +106,7 @@
     <script src="./assets/static/js/components/dark.js"></script>
     <script src="./assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="./assets/compiled/js/app.js"></script>
-
+    @yield('script')
 
     <script src="assets/extensions/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.min.js"></script>
     <script src="assets/extensions/filepond-plugin-file-validate-type/filepond-plugin-file-validate-type.min.js"></script>
