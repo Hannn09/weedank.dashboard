@@ -33,10 +33,6 @@
                                 <label for="name" class="fw-medium mb-2">Nama Bahan</label>
                                 <input type="text" class="form-control" id="name" placeholder="Santan">
                             </div>
-                            <div class="form-group mb-3">
-                                <label for="count" class="fw-medium mb-2">Jumlah Stok</label>
-                                <input type="text" class="form-control" id="count" placeholder="100">
-                            </div>
                             <div class="form-group">
                                 <label for="unit" class="fw-medium mb-2">Satuan</label>
                                 <fieldset class="form-group">
@@ -78,7 +74,7 @@
     </div>
 
     {{-- Table --}}
-    <div class="col-12s">
+    <div class="col-12">
         <div class="card">
             <div class="card-body p-0">
                 <div class="table-responsive">

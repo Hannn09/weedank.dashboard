@@ -84,6 +84,56 @@
                                 </li>
                             </ul>
                         </li>
+
+                        <li class="sidebar-item @if (Request::routeIs('materials')) active @endif">
+                            <a href="{{ route('materials') }}" class='sidebar-link'>
+                                <i class="bi bi-cash-stack"></i>
+                                <span>Bill Of Materials</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item @if (Request::routeIs('manufacturing')) active @endif">
+                            <a href="{{ route('manufacturing') }}" class='sidebar-link'>
+                                <i class="bi bi-diagram-3-fill"></i>
+                                <span>Manufacturing</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item @if (Request::routeIs('vendor')) active @endif">
+                            <a href="{{ route('vendor') }}" class='sidebar-link'>
+                                <i class="bi bi-truck"></i>
+                                <span>Vendor</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item @if (Request::routeIs('quotation')) active @endif">
+                            <a href="{{ route('quotation') }}" class='sidebar-link'>
+                                <i class="bi bi-currency-dollar"></i>
+                                <span>Request For Quotation</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item @if (Request::routeIs('purchase')) active @endif">
+                            <a href="{{ route('purchase') }}" class='sidebar-link'>
+                                <i class="bi bi-cart-dash-fill"></i>
+                                <span>Purchase Order</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item @if (Request::routeIs('payment')) active @endif">
+                            <a href="{{ route('payment') }}" class='sidebar-link'>
+                                <i class="bi bi-credit-card"></i>
+                                <span>Payment Order</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item @if (Request::routeIs('customer')) active @endif">
+                            <a href="{{ route('customer') }}" class='sidebar-link'>
+                                <i class="bi bi-people-fill"></i>
+                                <span>Customer</span>
+                            </a>
+                        </li>
+
                     </ul>
                 </div>
             </div>
