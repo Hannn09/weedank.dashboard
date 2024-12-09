@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="./assets/compiled/css/iconly.css">
     <link rel="stylesheet" href="./assets/extensions/filepond/filepond.css">
     <link rel="stylesheet" href="./assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.css">
+    <link rel="stylesheet" href="./assets/extensions/sweetalert2/sweetalert2.min.css">
+    <link rel="stylesheet" href="./assets/extensions/toastify-js/src/toastify.css">
 </head>
 
 <body>
@@ -73,65 +75,94 @@
                         <li class="sidebar-item  has-sub @if (Request::routeIs('ingredients', 'product')) active @endif">
                             <a href="#" class='sidebar-link'>
                                 <i class="bi bi-box-seam-fill"></i>
-                                <span>Barang</span>
+                                <span>Product</span>
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item  @if (Request::routeIs('product')) active @endif">
-                                    <a href="{{ route('product') }}" class="submenu-link">Produk</a>
+                                    <a href="{{ route('product') }}" class="submenu-link">Product</a>
                                 </li>
                                 <li class="submenu-item @if (Request::routeIs('ingredients')) active @endif">
-                                    <a href="{{ route('ingredients') }}" class="submenu-link">Bahan Baku</a>
+                                    <a href="{{ route('ingredients') }}" class="submenu-link">Ingredients</a>
                                 </li>
                             </ul>
                         </li>
 
-                        <li class="sidebar-item @if (Request::routeIs('materials')) active @endif">
-                            <a href="{{ route('materials') }}" class='sidebar-link'>
-                                <i class="bi bi-cash-stack"></i>
-                                <span>Bill Of Materials</span>
-                            </a>
-                        </li>
-
-                        <li class="sidebar-item @if (Request::routeIs('manufacturing')) active @endif">
-                            <a href="{{ route('manufacturing') }}" class='sidebar-link'>
+                        <li class="sidebar-item  has-sub @if (Request::routeIs('manufacturing', 'materials')) active @endif">
+                            <a href="#" class='sidebar-link'>
                                 <i class="bi bi-diagram-3-fill"></i>
                                 <span>Manufacturing</span>
                             </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item  @if (Request::routeIs('materials')) active @endif">
+                                    <a href="{{ route('materials') }}" class="submenu-link">Bill Of Materials</a>
+                                </li>
+                                <li class="submenu-item @if (Request::routeIs('manufacturing')) active @endif">
+                                    <a href="{{ route('manufacturing') }}" class="submenu-link">MO</a>
+                                </li>
+                            </ul>
                         </li>
 
-                        <li class="sidebar-item @if (Request::routeIs('vendor')) active @endif">
-                            <a href="{{ route('vendor') }}" class='sidebar-link'>
-                                <i class="bi bi-truck"></i>
-                                <span>Vendor</span>
-                            </a>
-                        </li>
-
-                        <li class="sidebar-item @if (Request::routeIs('quotation')) active @endif">
-                            <a href="{{ route('quotation') }}" class='sidebar-link'>
-                                <i class="bi bi-currency-dollar"></i>
-                                <span>Request For Quotation</span>
-                            </a>
-                        </li>
-
-                        <li class="sidebar-item @if (Request::routeIs('purchase')) active @endif">
-                            <a href="{{ route('purchase') }}" class='sidebar-link'>
+                        <li class="sidebar-item  has-sub @if (Request::routeIs('vendor', 'quotation', 'purchase', 'payment')) active @endif">
+                            <a href="#" class='sidebar-link'>
                                 <i class="bi bi-cart-dash-fill"></i>
-                                <span>Purchase Order</span>
+                                <span>Purchase</span>
                             </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item  @if (Request::routeIs('vendor')) active @endif">
+                                    <a href="{{ route('vendor') }}" class="submenu-link">Vendor</a>
+                                </li>
+                                <li class="submenu-item  @if (Request::routeIs('quotation')) active @endif">
+                                    <a href="{{ route('quotation') }}" class="submenu-link">RFQ</a>
+                                </li>
+                                <li class="submenu-item @if (Request::routeIs('purchase')) active @endif">
+                                    <a href="{{ route('purchase') }}" class="submenu-link">Purchase Order</a>
+                                </li>
+                                <li class="submenu-item @if (Request::routeIs('payment')) active @endif">
+                                    <a href="{{ route('payment') }}" class="submenu-link">Payment Order</a>
+                                </li>
+                            </ul>
                         </li>
 
-                        <li class="sidebar-item @if (Request::routeIs('payment')) active @endif">
-                            <a href="{{ route('payment') }}" class='sidebar-link'>
-                                <i class="bi bi-credit-card"></i>
-                                <span>Payment Order</span>
+
+                        <li class="sidebar-item has-sub @if (Request::routeIs('customer', 'sales-quotation', 'sales-order', 'delivery', 'validate')) active @endif">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-cash-stack"></i>
+                                <span>Sales</span>
                             </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item  @if (Request::routeIs('customer')) active @endif">
+                                    <a href="{{ route('customer') }}" class="submenu-link">Customer</a>
+                                </li>
+                                <li class="submenu-item  @if (Request::routeIs('sales-quotation')) active @endif">
+                                    <a href="{{ route('sales-quotation') }}" class="submenu-link">Sales Quotation</a>
+                                </li>
+                                <li class="submenu-item  @if (Request::routeIs('sales-order')) active @endif">
+                                    <a href="{{ route('sales-order') }}" class="submenu-link">Sales Order</a>
+                                </li>
+                                <li class="submenu-item  @if (Request::routeIs('delivery')) active @endif">
+                                    <a href="{{ route('delivery') }}" class="submenu-link">Delivery</a>
+                                </li>
+                                <li class="submenu-item  @if (Request::routeIs('validate')) active @endif">
+                                    <a href="{{ route('validate') }}" class="submenu-link">Validate</a>
+                                </li>
+                            
+                            </ul>
                         </li>
 
-                        <li class="sidebar-item @if (Request::routeIs('customer')) active @endif">
-                            <a href="{{ route('customer') }}" class='sidebar-link'>
-                                <i class="bi bi-people-fill"></i>
-                                <span>Customer</span>
+                        <li class="sidebar-item has-sub @if (Request::routeIs('invoice-sales', 'invoice-purchase')) active @endif">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-receipt"></i>
+                                <span>Invoice</span>
                             </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item  @if (Request::routeIs('invoice-sales')) active @endif">
+                                    <a href="{{ route('invoice-sales') }}" class="submenu-link">Invoice Sales</a>
+                                </li>
+                                <li class="submenu-item  @if (Request::routeIs('invoice-purchase')) active @endif">
+                                    <a href="{{ route('invoice-purchase') }}" class="submenu-link">Invoice Purchase</a>
+                                </li>
+                                
+                            </ul>
                         </li>
 
                     </ul>
@@ -167,7 +198,10 @@
     <script src="assets/extensions/filepond-plugin-image-resize/filepond-plugin-image-resize.min.js"></script>
     <script src="assets/extensions/filepond/filepond.js"></script>
     <script src="assets/extensions/toastify-js/src/toastify.js"></script>
+    <script src="assets/static/js/pages/toastify.js"></script>
     <script src="assets/static/js/pages/filepond.js"></script>
+    <script src="assets/extensions/sweetalert2/sweetalert2.min.js"></script>>
+    <script src="assets/static/js/pages/sweetalert2.js"></script>
 
     <!-- Need: Apexcharts -->
     <script src="assets/extensions/apexcharts/apexcharts.min.js"></script>

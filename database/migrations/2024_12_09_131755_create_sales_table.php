@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('manufacturings', function (Blueprint $table) {
+        Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('idMaterials')->references('id')->on('materials')->onDelete('cascade');
-            $table->unsignedInteger('qty');
-            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }
@@ -25,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('manufacturings');
+        Schema::dropIfExists('sales');
     }
 };

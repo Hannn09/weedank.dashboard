@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('ingredients', function (Blueprint $table) {
             $table->id();
+            $table->string('code')->unique();
+            $table->string('name');
+            $table->integer('stock')->default(0);
+            $table->unsignedBigInteger('price'); // Harga per unit bahan baku
+            $table->string('img')->nullable();
             $table->timestamps();
         });
     }
