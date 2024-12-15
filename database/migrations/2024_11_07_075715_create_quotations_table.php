@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('quotations', function (Blueprint $table) {
             $table->id();
+            $table->string('reference');
+            $table->foreignId('idIngredients')->references('id')->on('ingredients')->onDelete('cascade');
+            $table->foreignId('idVendor')->references('id')->on('vendors')->onDelete('cascade');
+            $table->unsignedInteger('qtyIngredients'); 
+            $table->date('orderDate');
+            $table->unsignedBigInteger('total');
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

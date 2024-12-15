@@ -16,11 +16,11 @@
             </svg>Create BoM
         </button>
 
-        {{-- Button Report --}}
+        {{-- Button Report
         <button class="btn btn-primary mb-4 px-3 py-2 text-white rounded-3 fw-semibold d-flex align-items-center gap-2"
             onclick="location.href='{{ route('materials.report') }}'">
             </svg>Report Data
-        </button>
+        </button> --}}
     </div>
 
     {{-- Table --}}
@@ -44,8 +44,8 @@
                         <td>{{ $item->bomCost }}</td>
                         <td>{{ $item->productCost }}</td>
                         <td class="d-flex  align-items-center gap-2">
-                            <a href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal"><i
-                                    class="bi bi-pencil-square text-white"></i></a>
+                            <a href="" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#detail{{ $item->id }}"><i
+                                class="bi bi-eye text-white"></i></a>
                             <form action="{{ route('materials.destroy', $item->code) }}" method="POST"
                                 onsubmit="return confirm('Are you sure?')">
                                 @csrf
@@ -54,8 +54,7 @@
                                     <i class="bi bi-trash-fill text-white"></i>
                                 </button>
                             </form>
-                            <a href="" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#detail{{ $item->id }}"><i
-                                    class="bi bi-eye text-white"></i></a>
+                            
                         </td>
                     </tr>
                     @empty
@@ -82,7 +81,7 @@
                                 <div class="form-group mb-3">
                                     <label for="code" class="fw-medium mb-2">BoM Code</label>
                                     <input type="text" class="form-control @error('code') is-invalid @enderror"
-                                        id="code" placeholder="A001" name="code" required>
+                                        id="code" placeholder="C001" name="code" required>
                                     @error('code')
                                     <div class="invalid-feedback">
                                         {{ $message }}

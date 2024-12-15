@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
+            $table->string('code');
+            $table->foreignId('idQuotation')->references('id')->on('quotations')->onDelete('cascade');
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

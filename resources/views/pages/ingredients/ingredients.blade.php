@@ -31,7 +31,7 @@
                                     <div class="form-group mb-3">
                                         <label for="code" class="fw-medium mb-2">Ingredients Code</label>
                                         <input type="text" class="form-control @error('code') is-invalid @enderror"
-                                            id="code" name="code" placeholder="A001" required>
+                                            id="code" name="code" placeholder="B001" required>
                                         @error('code')
                                         <div class="invalid-feedback">
                                             {{ $message }}

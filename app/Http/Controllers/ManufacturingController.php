@@ -40,7 +40,6 @@ class ManufacturingController extends Controller
     }
 
     public function update(Request $request, $id){
-
         try {
             $manufacturing = Manufacturing::find($id);
 
@@ -60,11 +59,14 @@ class ManufacturingController extends Controller
                 $manufacturing->status = 2;
 
                 foreach ($materials as $material) {
+                    $product = $material->product;
                     $ingredient = $material->ingredient;
                     $quantityToConsume = $material->qtyBom * $manufacturing->qty;
                     $ingredient->stock -= $quantityToConsume;
                     $ingredient->save();
                 }
+                $product->stock += $manufacturing->qty;
+                $product->save();
             } 
 
             $manufacturing->save();

@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
+            $table->string('salesOrderCode'); // Relasi ke Sales Orders
+            $table->string('quotationCode'); // Kode Sales Quotation
+            $table->foreignId('idCustomers')->constrained('customers')->onDelete('cascade'); // Relasi ke Customers
+            $table->unsignedBigInteger('total'); // Total nilai pesanan
+            $table->unsignedTinyInteger('status')->default(0);
             $table->timestamps();
         });
     }

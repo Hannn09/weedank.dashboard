@@ -29,7 +29,7 @@
                     <td>{{ $item->material->code }}</td>
                     <td>{{ $item->material->product->code }}</td>
                     <td>{{ $item->material->product->name }}</td>
-                    <th><span class="badge 
+                    <td><span class="badge 
                         @if($item->status == 0) bg-secondary 
                         @elseif($item->status == 1) bg-warning
                         @else bg-success
@@ -37,7 +37,7 @@
                             @if($item->status == 0) Mark as Todo
                             @elseif($item->status == 1) Ready To Produce
                             @else Done
-                            @endif</span></th>
+                            @endif</span></td>
                     <td class="d-flex align-items-center gap-2"><a href="#" class="btn btn-info" data-bs-toggle="modal"
                             data-bs-target="#detail{{ $item->id }}"><i class="bi bi-eye text-white"></i></a>
                         <form action="{{ route('manufacturing.destroy', $item->id) }}" method="POST"
@@ -51,7 +51,7 @@
                     </td>
                 </tr>
                 @empty
-                <td colspan="5">Manufacturing Not Found</td>
+                <td colspan="5" align="center">Manufacturing Not Found</td>
                 @endforelse
 
             </table>
@@ -275,13 +275,18 @@
 </script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const modalId = '{{ session('
-        modal_id ') }}';
-        if (modalId) {
-            const modal = new bootstrap.Modal(document.getElementById(`detail${modalId}`));
-            modal.show();
-        }
-    });
+        const closeModalButtons = document.querySelectorAll('[data-bs-dismiss="modal"]');
 
+        closeModalButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const modal = button.closest('.modal');
+                if (modal) {
+                    const bootstrapModal = bootstrap.Modal.getInstance(modal);
+                    bootstrapModal.hide();
+                }
+            });
+        });
+    });
 </script>
+
 @endsection

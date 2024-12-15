@@ -16,5 +16,10 @@ class Ingredients extends Model
     {
         return $this->hasOne(Materials::class, 'idIngredients', 'id');
     }
+
+    public function quotation()
+    {
+        return $this->hasMany(Quotation::class, 'idIngredients', 'id');
+    }
 }
 
