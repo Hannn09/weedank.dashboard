@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('invoice_purchases', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('purchaseId')->references('id')->on('purchases')->onDelete('cascade');
             $table->timestamps();
         });
     }

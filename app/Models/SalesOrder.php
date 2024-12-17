@@ -26,4 +26,9 @@ class SalesOrder extends Model
     {
         return $this->hasMany(SalesQuotation::class, 'code', 'quotationCode');
     }
+
+    public function invoiceSales()
+    {
+        return $this->hasOne(InvoiceSales::class, 'salesOrderId', 'id');
+    }
 }

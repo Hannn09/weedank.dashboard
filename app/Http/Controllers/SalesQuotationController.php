@@ -205,7 +205,7 @@ class SalesQuotationController extends Controller
                 'grandTotal' => $quotationDetails->sum(fn($q) => $q->qty * $q->price),
             ];
 
-            $pdf = Pdf::loadView('exports.quotation', $data);
+            $pdf = Pdf::loadView('layouts.quotation-report', $data);
 
             return $pdf->download('quotation_' . $code . '.pdf');
         } catch (\Exception $e) {

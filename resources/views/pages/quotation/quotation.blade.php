@@ -30,7 +30,7 @@
                     <td>{{ $reference }}</td>
                     <td>{{ $quotations->first()->orderDate }}</td>
                     <td>{{ $quotations->first()->vendor->name }}</td>
-                    <td>{{ $quotations->first()->total }}</td>
+                    <td>Rp {{ number_format($quotations->first()->total, 2) }}</td>
                     <td>
                         <span class="badge @if($quotations->first()->status == 0) bg-secondary 
                         @elseif($quotations->first()->status == 1) bg-warning
@@ -198,14 +198,14 @@
                                 <tr>
                                     <td>{{ $quotation->ingredient->name }}</td>
                                     <td>{{ $quotation->qtyIngredients }}</td>
-                                    <td>{{ $quotation->ingredient->price }}</td>
-                                    <td>{{ $quotation->qtyIngredients * $quotation->ingredient->price }}</td>
+                                    <td>Rp {{ number_format($quotation->ingredient->price, 2) }}</td>
+                                    <td>Rp {{ number_format($quotation->qtyIngredients * $quotation->ingredient->price, 2) }}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
-                    <span class="d-flex justify-content-end mt-2">Total : {{ $quotations->first()->total }}</span>
+                    <span class="d-flex justify-content-end mt-2">Total : Rp {{ number_format($quotations->first()->total, 2) }}</span>
                 </div>
             </div>
             <div class="modal-footer">

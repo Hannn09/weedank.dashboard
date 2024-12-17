@@ -24,6 +24,11 @@ class Purchase extends Model
         return $this->hasOne(Payment::class, 'idPurchase');
     }
 
+    public function invoice()
+    {
+        return $this->hasOne(InvoicePurchase::class, 'purchaseId');
+    }
+
     
 }
 

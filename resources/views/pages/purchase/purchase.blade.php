@@ -31,7 +31,7 @@
                     <td>{{ $item->quotation->reference }}</td>
                     <td>{{ $item->quotation->orderDate }}</td>
                     <td>{{ $item->quotation->vendor->name }}</td>
-                    <td>{{ $item->quotation->total }}</td>
+                    <td>Rp {{ number_format( $item->quotation->total, 2) }}</td>
                     <td>
                         <span class="badge 
                         @if($item->status == 0) bg-secondary
@@ -192,15 +192,15 @@
                                     <tr>
                                         <td>{{ $quotation->ingredient->name }}</td>
                                         <td>{{ $quotation->qtyIngredients }}</td>
-                                        <td>{{ $quotation->ingredient->price }}</td>
-                                        <td>{{ $quotation->qtyIngredients * $quotation->ingredient->price }}</td>
+                                        <td>Rp {{ number_format($quotation->ingredient->price, 2) }}</td>
+                                        <td>Rp {{ number_format($quotation->qtyIngredients * $quotation->ingredient->price, 2) }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
                         </div>
                         <span class="d-flex justify-content-end mt-2">
-                            Total: {{ $item->quotation->total }}
+                            Total: Rp {{ number_format($item->quotation->total) }}
                         </span>
                     </div>
                 </div>

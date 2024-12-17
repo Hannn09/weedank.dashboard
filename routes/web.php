@@ -96,6 +96,8 @@ Route::patch('/validate/{code}/validate', [SalesController::class, 'validateOrde
 
 
 Route::get('/invoice-sales', [InvoiceSalesController::class, 'index'])->name('invoice-sales');
+Route::post('/invoice-sales-store', [InvoiceSalesController::class, 'store'])->name('invoice-sales.store');
 Route::get('/invoice-purchase', [InvoicePurchaseController::class, 'index'])->name('invoice-purchase');
-
+Route::post('/invoice-purchase-store', [InvoicePurchaseController::class, 'store'])->name('invoice-purchase.store');
+Route::get('/invoice-purchase-report/{$id}', [InvoicePurchaseController::class, 'exportPdf'])->name('invoice-purchase.report');
 

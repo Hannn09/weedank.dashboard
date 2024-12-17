@@ -107,7 +107,7 @@
                             <td>{{ $item->code }}</td>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->stock }}</td>
-                            <td>{{ $item->price }}</td>
+                            <td>Rp {{ number_format( $item->price, 2 ) }}</td>
                             <td class="d-flex  align-items-center gap-2">
                                 <a href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal"
                                     onclick="openModal('update', {{ $item }})"><i

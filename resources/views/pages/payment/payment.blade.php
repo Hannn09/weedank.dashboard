@@ -23,7 +23,7 @@
                 @forelse ($payment as $item)
                 <tr>
                     <td>{{ $item->purchase->quotation->vendor->name }}</td>
-                    <td>{{ $item->purchase->quotation->total }}</td>
+                    <td>Rp {{ number_format($item->purchase->quotation->total, 2) }}</td>
                     <td> <span class="badge 
                         @if($item->status == 0) bg-secondary
                         @elseif($item->status == 1) bg-warning
@@ -183,8 +183,8 @@ $quotations = $data['quotations'];
                                     <tr>
                                         <td>{{ $quotation->ingredient->name }}</td>
                                         <td>{{ $quotation->qtyIngredients }}</td>
-                                        <td>{{ $quotation->ingredient->price }}</td>
-                                        <td>{{ $quotation->qtyIngredients * $quotation->ingredient->price }}</td>
+                                        <td>Rp {{ number_format($quotation->ingredient->price, 2) }}</td>
+                                        <td>Rp {{ number_format($quotation->qtyIngredients * $quotation->ingredient->price, 2) }}</td>
                                     </tr>
                                     @empty
                                     <tr>
@@ -194,7 +194,7 @@ $quotations = $data['quotations'];
                                 </tbody>
                             </table>
                         </div>
-                        <span class="d-flex align-items-end justify-content-end">Total : {{ $payment->purchase->quotation->total }}</span>
+                        <span class="d-flex align-items-end justify-content-end">Total : Rp {{ number_format($payment->purchase->quotation->total, 2) }}</span>
                     </div>
                 </div>
                 <div class="modal-footer">

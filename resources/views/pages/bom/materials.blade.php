@@ -41,8 +41,8 @@
                         <td>{{ $item->product->name }}</td>
                         <td>{{ $item->code }}</td>
                         <td>{{ $item->qtyProduct }}</td>
-                        <td>{{ $item->bomCost }}</td>
-                        <td>{{ $item->productCost }}</td>
+                        <td>Rp {{ number_format($item->bomCost, 2) }}</td>
+                        <td>Rp {{ number_format($item->productCost, 2) }}</td>
                         <td class="d-flex  align-items-center gap-2">
                             <a href="" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#detail{{ $item->id }}"><i
                                 class="bi bi-eye text-white"></i></a>
@@ -196,8 +196,8 @@
                                         <tr>
                                             <td>{{ $material->ingredient->name }}</td>
                                             <td>{{ $material->qtyBom }}</td>
-                                            <td>{{ $material->ingredient->price }}</td>
-                                            <td>{{ (($material->qtyBom * $material->ingredient->price) * ($material->product->profit / 100)) + ($material->qtyBom * $material->ingredient->price) }}</td>
+                                            <td>Rp {{ number_format($material->ingredient->price, 2) }}</td>
+                                            <td>Rp {{ number_format((($material->qtyBom * $material->ingredient->price) * ($material->product->profit / 100)) + ($material->qtyBom * $material->ingredient->price), 2) }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -205,8 +205,8 @@
                                     <tr>
                                         <td colspan="1"></td>
                                         <td class="fw-bold" align="left">Unit Cost:</td>
-                                        <td align="left">Rp {{ $item->bomCost }}</td>
-                                        <td align="left">Rp {{ $item->productCost }}</td>
+                                        <td align="left">Rp {{ number_format($item->bomCost, 2) }}</td>
+                                        <td align="left">Rp {{ number_format($item->productCost, 2) }}</td>
                                     </tr>
                                 </tfoot>
                             </table>

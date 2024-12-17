@@ -137,7 +137,7 @@
 
 @foreach ($manufacturings as $item)
 {{-- Showing Detail Modal --}}
-<div class="modal fade modal-borderless modal-lg @if (session('modal_id') == $item->id) show @endif"
+<div class="modal fade modal-borderless modal-lg "
     id="detail{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"
     @if (session('modal_id')==$item->id) style="display: block;" @endif>
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
@@ -274,19 +274,12 @@
 
 </script>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const closeModalButtons = document.querySelectorAll('[data-bs-dismiss="modal"]');
-
-        closeModalButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                const modal = button.closest('.modal');
-                if (modal) {
-                    const bootstrapModal = bootstrap.Modal.getInstance(modal);
-                    bootstrapModal.hide();
-                }
-            });
-        });
+     document.addEventListener('DOMContentLoaded', function () {
+        @if (session('error') && session('modal_id'))
+            const modalId = "detail{{ session('modal_id') }}";
+            const modal = new bootstrap.Modal(document.getElementById(modalId));
+            modal.show();
+        @endif
     });
 </script>
-
 @endsection

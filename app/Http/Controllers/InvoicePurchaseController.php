@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Purchase;
+use App\Models\Quotation;
 use App\Models\InvoicePurchase;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class InvoicePurchaseController extends Controller
@@ -12,7 +15,30 @@ class InvoicePurchaseController extends Controller
      */
     public function index()
     {
-        return view('pages.invoice.invoice-purchase');
+        $invoice = InvoicePurchase::all();
+        $purchase = Purchase::with(['quotation.ingredient'])->where('status', 3)->get();
+
+        $filteredPurchase = $purchase->map(function ($item) {
+            $ingredients = Quotation::where('reference', $item->quotation->reference)
+                ->with('ingredient')
+                ->get()
+                ->map(function ($quotation) {
+                    return [
+                        'ingredient_name' => $quotation->ingredient->name,
+                        'qty' => $quotation->qtyIngredients,
+                        'price' => $quotation->ingredient->price,
+                        'total' => $quotation->qtyIngredients * $quotation->ingredient->price,
+                    ];
+                });
+    
+            return [
+                'id' => $item->id,
+                'code' => $item->code,
+                'ingredients' => $ingredients,
+            ];
+        });
+    
+        return view('pages.invoice.invoice-purchase', compact('filteredPurchase', 'invoice'));
     }
 
     /**
@@ -28,15 +54,53 @@ class InvoicePurchaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'purchaseId' => 'required',
+        ]);
+
+        try {
+            InvoicePurchase::create([
+                'purchaseId' => $request->purchaseId,
+            ]);
+
+            return redirect()->route('invoice-purchase')
+                        ->with('success', 'Invoice added successfully!');
+        } catch (\Exception $e) {
+            return redirect()->route('invoice-purchase')
+            ->with('error', 'An error occurred. Please try again.');
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(InvoicePurchase $invoicePurchase)
+    public function exportPdf($id)
     {
-        //
+        $invoice = InvoicePurchase::find($id);
+        $purchase = Purchase::with(['quotation.ingredient'])->where('status', 3)->get();
+
+        $filteredPurchase = $purchase->map(function ($item) {
+            $ingredients = Quotation::where('reference', $item->quotation->reference)
+                ->with('ingredient')
+                ->get()
+                ->map(function ($quotation) {
+                    return [
+                        'ingredient_name' => $quotation->ingredient->name,
+                        'qty' => $quotation->qtyIngredients,
+                        'price' => $quotation->ingredient->price,
+                        'total' => $quotation->qtyIngredients * $quotation->ingredient->price,
+                    ];
+                });
+    
+            return [
+                'id' => $item->id,
+                'code' => $item->code,
+                'ingredients' => $ingredients,
+            ];
+        });
+
+        $pdf = Pdf::loadView('layouts.invoice-report', compact('purchase', 'filteredPurchase', 'invoice'));
+        return $pdf->stream('invoice-purchase.pdf');
     }
 
     /**
